@@ -66,10 +66,13 @@ tags = {
 
 resource "aws_s3_bucket_object" "mybucket1" {
   bucket = "ashish1469"
-  key    = "myimage.jpg"
-  source = "C:/Users/ASHISH/Pictures/myimage.jpg"
+ provisioner "local-exec" {
+ command = "git clone https://github.com/ashish1469/image.git C:/Users/ASHISH/Desktop/bucket"
+}
+ key    = "myimage.jpg"
+ source = "C:/Users/ASHISH/Desktop/myimage.jpg"
  content_type = "image or jpg"
-  acl    = "public-read"
+ acl    = "public-read"
  depends_on = [ aws_s3_bucket.bucket1 ]
 }
 
